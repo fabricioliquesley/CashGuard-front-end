@@ -8,10 +8,15 @@ export function Menu() {
     return (
         <MenuContainer>
             <div>
-                <Link to={"/"} data-active="true">
+                <Link 
+                    to={"/"} 
+                    data-active="true"
+                >
                     <FiHome />
                 </Link>
-                <Link to={"/transactions"} >
+                <Link 
+                    to={"/transactions"}
+                >
                     <GrTransaction />
                 </Link>
             </div>

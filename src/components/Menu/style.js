@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const MenuContainer = styled.menu`
     position: sticky;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;

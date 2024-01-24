@@ -12,7 +12,7 @@ export default createGlobalStyle`
     }
 
     body {
-        background: ${({ theme }) => theme.COLORS.GRAY_500};
+        background: ${({ theme }) => theme.COLORS.GRAY_400};
     }
 
     body, input, button {
