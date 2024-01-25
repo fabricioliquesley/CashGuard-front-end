@@ -33,7 +33,7 @@ export function SignIn() {
                     title={"Entrar"}
                 />
                 <Link to={"/register"}>
-                    não tem uma conta? cadastre-se agora
+                    Não tem uma conta? cadastre-se agora.
                 </Link>
             </Form>
             <BgEffect src={dollar} className="sprite3"/>
