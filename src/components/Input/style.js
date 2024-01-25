@@ -5,6 +5,7 @@ export const Container = styled.div`
     align-items: center;
     gap: 0.5rem;
     width: 100%;
+    background: ${({theme}) => theme.COLORS.GRAY_400};
     padding: 0.7rem;
     border: 1px solid ${({theme}) => theme.COLORS.BLUE_100};
     border-radius: 1rem;
