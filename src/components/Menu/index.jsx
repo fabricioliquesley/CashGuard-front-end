@@ -3,19 +3,37 @@ import { GrTransaction } from "react-icons/gr"
 
 import { MenuContainer, Button } from "./style"
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export function Menu() {
+    const [buttonSelected, setButtonSelected] = useState("");
+
+    function changeButtonSelected(button){
+        setButtonSelected(button);
+
+        localStorage.setItem("@cashGuard", button);
+    }
+
+    useEffect(() => {
+        const selectedButton = localStorage.getItem("@cashGuard");
+
+        setButtonSelected(selectedButton);
+    }, [])
+
     return (
         <MenuContainer>
             <div>
-                <Link 
-                    to={"/"} 
-                    data-active="true"
+                <Link
+                    to={"/"}
+                    data-active={buttonSelected == "" || buttonSelected == "home"}
+                    onClick={() => changeButtonSelected("home")}
                 >
                     <FiHome />
                 </Link>
-                <Link 
+                <Link
                     to={"/transactions"}
+                    data-active={buttonSelected == "transactions"}
+                    onClick={() => changeButtonSelected("transactions")}
                 >
                     <GrTransaction />
                 </Link>
