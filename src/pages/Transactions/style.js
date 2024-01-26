@@ -10,9 +10,16 @@ export const Container = styled.main`
 export const Content = styled.section`
     padding: 1.66666rem;
 
-    > h2 {
-        color: ${({theme}) => theme.COLORS.GRAY_200};
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        h2 {
+            color: ${({theme}) => theme.COLORS.GRAY_200};
+        }
     }
+
 
     > section {
         display: flex;

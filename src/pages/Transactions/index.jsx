@@ -2,33 +2,37 @@ import { Container, Content, Filter } from "./style";
 import { Menu } from "../../components/Menu";
 import { Transaction } from "../../components/Transaction";
 import { ButtonFilter } from "../../components/ButtonFilter";
+import { Profile } from "../../components/Profile";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
 
 export function Transactions() {
     const [buttonSelected, setButtonSelected] = useState("");
 
-    function handleSelectedButton(button){
+    function handleSelectedButton(button) {
         setButtonSelected(button);
     }
 
     return (
         <Container>
             <Content>
-                <h2>Transações</h2>
+                <div>
+                    <h2>Transações</h2>
+                    <Profile />
+                </div>
                 <Filter>
                     <FaFilter />
                     <ButtonFilter
-                        name={"todas"} 
+                        name={"todas"}
                         isActive={buttonSelected === "" || buttonSelected === "all"}
                         onClick={() => handleSelectedButton("all")}
                     />
-                    <ButtonFilter 
+                    <ButtonFilter
                         name={"receitas"}
                         isActive={buttonSelected === "incomes"}
                         onClick={() => handleSelectedButton("incomes")}
                     />
-                    <ButtonFilter 
+                    <ButtonFilter
                         name={"despesas"}
                         isActive={buttonSelected === "expenses"}
                         onClick={() => handleSelectedButton("expenses")}
