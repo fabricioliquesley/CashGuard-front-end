@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
+import {DEVICE_BREAKPOINT} from "../../style/deviceBreakPoint";
+
 export const Container = styled.main`
     display: flex;
     flex-direction: column;
@@ -21,6 +23,13 @@ export const Header = styled(Link)`
     > svg {
         font-size: 1.2rem;
     }
+
+    @media (min-width: ${DEVICE_BREAKPOINT.LG}) {
+        width: 100%;
+        max-width: 37.5rem;
+        margin: 0 auto;
+        padding: 1.6666666rem 0;
+    }
 `;
 
 export const Content = styled.section`
@@ -33,6 +42,12 @@ export const Content = styled.section`
     background: ${({ theme }) => theme.COLORS.GRAY_400};
     border-radius: 2rem 2rem 0 0;
     overflow-y: auto;
+
+    @media (min-width: ${DEVICE_BREAKPOINT.LG}) {
+        width: 100%;
+        max-width: 37.5rem;
+        margin: 0 auto;
+    }
 `;
 
 export const Form = styled.form`
