@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../style/deviceBreakPoint";
 
 export const Container = styled.main`
     position: relative;
@@ -30,15 +31,21 @@ export const Container = styled.main`
 
 export const Message = styled.section`
     > h2 {
-        color: ${({theme}) => theme.COLORS.BLUE_100};
+        color: ${({ theme }) => theme.COLORS.BLUE_100};
         text-align: center;
     }
 
     > q {
         display: block;
-        color: ${({theme}) => theme.COLORS.GRAY_200};
+        color: ${({ theme }) => theme.COLORS.GRAY_200};
         text-align: center;
         margin-top: 1rem;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINT.SM}) {
+        width: 100%;
+        max-width: 28.125rem;
+        margin: 0 auto;
     }
 `;
 
@@ -49,7 +56,13 @@ export const Form = styled.form`
 
     > a {
         text-align: center;
-        color: ${({theme}) => theme.COLORS.BLUE_100};
+        color: ${({ theme }) => theme.COLORS.BLUE_100};
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINT.SM}) {
+        width: 100%;
+        max-width: 28.125rem;
+        margin: 0 auto;
     }
 `;
 
