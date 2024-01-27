@@ -8,7 +8,6 @@ import { FiUser, FiMail, FiKey } from "react-icons/fi";
 export function SignUp(){
     return (
         <Container>
-            <h1></h1>
             <Form>
                 <Input
                     icon={FiUser}
