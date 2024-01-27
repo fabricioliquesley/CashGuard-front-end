@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import { DEVICE_BREAKPOINT } from "../../style/deviceBreakPoint";
 
 export const MenuContainer = styled.menu`
     position: sticky;
@@ -24,6 +25,17 @@ export const MenuContainer = styled.menu`
 
         a[data-active="true"] {
             color: ${({ theme }) => theme.COLORS.BLUE_100};
+        }
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINT.LG}) {
+        flex-direction: column;
+        width: fit-content;
+        height: 100vh;
+
+        > div {
+            flex-direction: column;
+            gap: 1rem;
         }
     }
 `;
