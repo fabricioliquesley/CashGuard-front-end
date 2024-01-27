@@ -33,6 +33,10 @@ export const Content = styled.section`
         gap: 1rem;
     }
 
+    > div:nth-child(2) {
+        margin-top: 1rem;
+    }
+
     @media (min-width: ${DEVICE_BREAKPOINT.LG}) {
         flex: 1;
         height: 100vh;

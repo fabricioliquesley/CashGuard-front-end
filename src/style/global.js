@@ -38,4 +38,16 @@ export default createGlobalStyle`
     button:hover, a:hover {
         filter: brightness(0.9);
     }
+
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+    
+    ::-webkit-scrollbar-track {
+        /* background-color: ${({ theme }) => theme.COLORS.GRAY_400}; */
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        /* background-color: ${({ theme }) => theme.COLORS.BLUE_100}; */
+    }
 `;

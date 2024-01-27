@@ -3,7 +3,9 @@ import { Menu } from "../../components/Menu";
 import { Transaction } from "../../components/Transaction";
 import { ButtonFilter } from "../../components/ButtonFilter";
 import { Profile } from "../../components/Profile";
-import { FaFilter } from "react-icons/fa";
+import { Input } from "../../components/Input";
+import { FaFilter, FaSearch } from "react-icons/fa";
+
 import { useState } from "react";
 
 export function Transactions() {
@@ -20,6 +22,11 @@ export function Transactions() {
                     <h2>Transações</h2>
                     <Profile />
                 </div>
+                <Input 
+                    icon={FaSearch} 
+                    placeholder={"Pesquisar"} 
+                    className={"search"}
+                />
                 <Filter>
                     <FaFilter />
                     <ButtonFilter

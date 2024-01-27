@@ -26,6 +26,7 @@ export const Selected = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0.7rem;
+    cursor: pointer;
     
     > div {
         display: flex;

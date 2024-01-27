@@ -64,18 +64,19 @@ export const Form = styled.form`
 export const List = styled.ul`
     max-height: 12.5rem;
     background: ${({ theme }) => theme.COLORS.GRAY_400};
-    margin-top: 0.5rem;
+    margin-top: 2px;
     border: 1px solid ${({ theme }) => theme.COLORS.BLUE_100};
     border-radius: 1rem;
     
     overflow: auto;
-    `;
+`;
 
 export const Option = styled.li`
     padding: 0.7rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
 
     &:hover {
         background: ${({ theme }) => theme.COLORS.GRAY_500};
