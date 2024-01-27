@@ -6,7 +6,19 @@ import { Link } from "react-router-dom";
 import { FiArrowLeft, FiUser, FiMail, FiKey } from "react-icons/fi";
 import { RxExit } from "react-icons/rx";
 
+import { useAuth } from "../../hook/auth";
+import { useNavigate } from "react-router-dom";
+
 export function UpdateProfile() {
+    const { signOut } = useAuth();
+    const navigate = useNavigate();
+
+    function logOut() {
+        navigate("/");
+
+        signOut();
+    }
+
     return (
         <Container>
             <Header>
@@ -14,7 +26,7 @@ export function UpdateProfile() {
                     <FiArrowLeft />
                     <h3>Perfil</h3>
                 </Link>
-                <button>
+                <button onClick={logOut}>
                     <RxExit />
                 </button>
             </Header>
