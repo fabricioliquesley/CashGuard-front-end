@@ -2,11 +2,11 @@ import { Container } from "./style";
 
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
-export function Transaction({ type, title, value, date }) {
+export function Transaction({ type, title, value, date, onClick }) {
     const newDate = date.split("-").reverse().join("/");
 
     return (
-        <Container $type={type}>
+        <Container $type={type} onClick={onClick}>
             <div>
                 {
                     type === "expenses" ? <CiCircleMinus /> : <CiCirclePlus />

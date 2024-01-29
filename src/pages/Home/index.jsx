@@ -9,6 +9,7 @@ import { MdHistory } from "react-icons/md";
 
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
     const [expensesValue, setExpensesValue] = useState(0);
@@ -30,6 +31,12 @@ export function Home() {
         }
     }
 
+    const navigate = useNavigate();
+
+    function showTransactionDetails(transaction_id){
+        navigate(`/details/${transaction_id}`);
+    }
+
     getExpensesValue("incomes");
     getExpensesValue("expenses");
 
@@ -41,7 +48,7 @@ export function Home() {
                 const response = await api.get("/transactions/recent");
 
                 setRecentTransaction(response.data);
-            } catch (error) {   
+            } catch (error) {
                 console.error(error);
             }
         }
@@ -83,6 +90,7 @@ export function Home() {
                                 title={transaction.title}
                                 value={transaction.value.toFixed(2)}
                                 date={transaction.date}
+                                onClick={() => showTransactionDetails(transaction.id)}
                             />
                         ))
                     }

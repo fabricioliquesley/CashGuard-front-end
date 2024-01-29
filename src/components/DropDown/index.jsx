@@ -23,8 +23,10 @@ export function DropDown({ children, selected, variant, ...rest }) {
             case "Investimentos":
                 return <IoBarChartOutline />
             case "Não pago":
+            case "Não recebido":
                 return <IoCloseOutline />
             case "Pago":
+            case "Recebido":
                 return <IoCheckmarkSharp />
             default:
                 return <IoEllipsisHorizontalSharp />

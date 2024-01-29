@@ -11,12 +11,18 @@ import { TbCurrencyReal } from "react-icons/tb";
 import { IoTrendingUpOutline, IoTrendingDownOutline, IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
 
 import { useState } from "react";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export function Create() {
     const [selectedType, setSelectedType] = useState("Despesa");
     const [selectedCategory, setSelectedCategory] = useState("Casa");
     const [selectedStatus, setSelectedStatus] = useState("Não pago");
 
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [value, setValue] = useState(0);
+    const [date, setDate] = useState("");
 
     function selectedValueType(selected) {
         setSelectedType(selected);
@@ -30,11 +36,29 @@ export function Create() {
         setSelectedStatus(selected);
     }
 
+    const navigate = useNavigate();
+
+    async function createTransaction() {
+        await api.post("/transactions", {
+            type: selectedType == "Despesa" ? "expenses" : "incomes",
+            title,
+            description,
+            value,
+            date,
+            category: selectedCategory,
+            status: selectedStatus
+        })
+
+        alert("Transação criada com sucesso!")
+
+        navigate(-1);
+    }
+
     return (
         <Container>
             <Header to={-1}>
                 <FiArrowLeft />
-                <h3>Create</h3>
+                <h3>Voltar</h3>
             </Header>
             <Content>
                 <Form>
@@ -62,11 +86,13 @@ export function Create() {
                         icon={MdOutlineTitle}
                         placeholder={"Título"}
                         id={"title"}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                     <label htmlFor="description">Descrição</label>
                     <TextArea
                         placeholder={"Descrição"}
                         id={"description"}
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                     <label htmlFor="category">Categoria</label>
                     <DropDown selected={selectedCategory} id={"category"}>
@@ -128,33 +154,55 @@ export function Create() {
                         placeholder={"Valor"}
                         type={"number"}
                         id={"value"}
+                        onChange={(e) => setValue(e.target.value)}
                     />
                     <label htmlFor="date">Data</label>
                     <Input
                         type={"date"}
                         id={"date"}
+                        onChange={(e) => setDate(e.target.value)}
                     />
                     <label htmlFor="status">Status</label>
                     <DropDown selected={selectedStatus} id={"status"}>
-                        <List>
-                            <Option
-                                data-value={"Não pago"}
-                                onClick={(e) => selectedValueStatus(e.target.dataset.value)}
-                            >
-                                <IoCloseOutline />
-                                Não pago
-                            </Option>
-                            <Option
-                                data-value={"Pago"}
-                                onClick={(e) => selectedValueStatus(e.target.dataset.value)}
-                            >
-                                <IoCheckmarkSharp />
-                                Pago
-                            </Option>
-                        </List>
+                            {
+                                selectedType == "Despesa" ?
+                                <List>
+                                    <Option
+                                        data-value={"Não pago"}
+                                        onClick={(e) => selectedValueStatus(e.target.dataset.value)}
+                                    >
+                                        <IoCloseOutline />
+                                        Não pago
+                                    </Option>
+                                    <Option
+                                        data-value={"Pago"}
+                                        onClick={(e) => selectedValueStatus(e.target.dataset.value)}
+                                    >
+                                        <IoCheckmarkSharp />
+                                        Pago
+                                    </Option>
+                                </List>
+                                :
+                                <List>
+                                    <Option
+                                        data-value={"Não recebido"}
+                                        onClick={(e) => selectedValueStatus(e.target.dataset.value)}
+                                    >
+                                        <IoCloseOutline />
+                                        Não recebido
+                                    </Option>
+                                    <Option
+                                        data-value={"Recebido"}
+                                        onClick={(e) => selectedValueStatus(e.target.dataset.value)}
+                                    >
+                                        <IoCheckmarkSharp />
+                                        Recebido
+                                    </Option>
+                                </List>
+                            }
                     </DropDown>
                 </Form>
-                <Button title={"Criar"} />
+                <Button title={"Criar"} onClick={createTransaction} />
             </Content>
         </Container>
     )
