@@ -5,7 +5,7 @@ import { TransactionsBalances } from "../../components/TransactionsBalances";
 import { Transaction } from "../../components/Transaction";
 
 import { FcBullish, FcBearish } from "react-icons/fc";
-import { MdCalendarMonth } from "react-icons/md";
+import { MdHistory } from "react-icons/md";
 
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
@@ -56,23 +56,23 @@ export function Home() {
                 <section className="card">
                     <div className="accountBalance">
                         <span>saldo da conta</span>
-                        <h3>R$ {total}</h3>
+                        <h3>R$ {total.toFixed(2)}</h3>
                     </div>
                     <div className="transactionsBalances">
                         <TransactionsBalances
                             icon={FcBearish}
                             title={"Despesas"}
-                            value={expensesValue}
+                            value={expensesValue.toFixed(2)}
                             type={"expenses"}
                         />
                         <TransactionsBalances
                             icon={FcBullish}
                             title={"Receitas"}
-                            value={incomesValue}
+                            value={incomesValue.toFixed(2)}
                         />
                     </div>
                 </section>
-                <h3><MdCalendarMonth /> Transações próximas do vencimento</h3>
+                <h3><MdHistory /> Transações recentes</h3>
                 <section className="transactions">
                     {
                         recentTransaction &&
@@ -81,7 +81,7 @@ export function Home() {
                                 key={transaction.id}
                                 type={transaction.type}
                                 title={transaction.title}
-                                value={transaction.value}
+                                value={transaction.value.toFixed(2)}
                                 date={transaction.date}
                             />
                         ))

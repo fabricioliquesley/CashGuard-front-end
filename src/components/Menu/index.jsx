@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function Menu() {
-    const [buttonSelected, setButtonSelected] = useState("");
+    const [buttonSelected, setButtonSelected] = useState("home");
 
     function changeButtonSelected(button){
         setButtonSelected(button);
@@ -17,7 +17,7 @@ export function Menu() {
     useEffect(() => {
         const selectedButton = localStorage.getItem("@cashGuard");
 
-        setButtonSelected(selectedButton);
+        if(selectedButton) setButtonSelected(selectedButton);        
     }, [])
 
     return (

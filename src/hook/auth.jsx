@@ -29,8 +29,8 @@ function AuthProvider({ children }) {
 
     async function signOut() {
         localStorage.removeItem("@cashGuard:user");
-        localStorage.removeItems("@cashGuard:token");
-        localStorage.removeItems("@cashGuard");
+        localStorage.removeItem("@cashGuard:token");
+        localStorage.removeItem("@cashGuard");
 
         setData({});
     }
