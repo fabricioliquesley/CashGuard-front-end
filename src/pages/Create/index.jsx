@@ -1,10 +1,11 @@
 import { Container, Header, Content, Form, List, Option } from "./style";
 import { Input } from "../../components/Input";
+import { TextArea } from "../../components/TextArea";
 import { Button } from "../../components/Button";
 import { DropDown } from "../../components/DropDown";
 
 import { FiArrowLeft } from "react-icons/fi";
-import { MdOutlineTitle, MdOutlineDescription } from "react-icons/md";
+import { MdOutlineTitle } from "react-icons/md";
 import { TbCurrencyReal } from "react-icons/tb";
 
 import { IoTrendingUpOutline, IoTrendingDownOutline, IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
@@ -63,8 +64,7 @@ export function Create() {
                         id={"title"}
                     />
                     <label htmlFor="description">Descrição</label>
-                    <Input
-                        icon={MdOutlineDescription}
+                    <TextArea
                         placeholder={"Descrição"}
                         id={"description"}
                     />
