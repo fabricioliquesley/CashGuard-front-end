@@ -8,15 +8,34 @@ import { RxExit } from "react-icons/rx";
 
 import { useAuth } from "../../hook/auth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function UpdateProfile() {
-    const { signOut } = useAuth();
+    const { user, signOut, updateProfile } = useAuth();
     const navigate = useNavigate();
+
+    const [name, setName] = useState(user.name);
+    const [email, setEmail] = useState(user.email);
+    const [old_password, setOld_password] = useState("");
+    const [password, setPassword] = useState("");
 
     function logOut() {
         navigate("/");
 
         signOut();
+    }
+
+    async function update(){
+        const user = {
+            name,
+            email,
+            old_password,
+            password
+        }
+
+        await updateProfile({user: user});
+
+        alert("Perfil atualizado!");
     }
 
     return (
@@ -39,18 +58,31 @@ export function UpdateProfile() {
                     <Input
                         icon={FiUser}
                         placeholder={"Nome"}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                     <Input
                         icon={FiMail}
-                        placeholder={"Nome"}
+                        placeholder={"E-mail"}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <Input
                         icon={FiKey}
-                        placeholder={"Nome"}
+                        placeholder={"Senha antiga"}
+                        value={old_password}
+                        onChange={(e) => setOld_password(e.target.value)}
+                    />
+                    <Input
+                        icon={FiKey}
+                        placeholder={"Nova senha"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </fieldset>
                 <Button
                     title={"salvar"}
+                    onClick={update}
                 />
             </Content>
         </Container>
