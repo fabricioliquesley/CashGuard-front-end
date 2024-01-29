@@ -38,8 +38,6 @@ export function Transactions() {
         fetchTransactions();
     }, [search, buttonSelected])
 
-    useEffect(() => console.log(transactions), [search])
-
     return (
         <Container>
             <Content>

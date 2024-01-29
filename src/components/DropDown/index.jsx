@@ -3,7 +3,7 @@ import { Container, Selected } from "./style";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { IoTrendingUpOutline, IoTrendingDownOutline, IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
 
-export function DropDown({ children, selected, ...rest }) {
+export function DropDown({ children, selected, variant, ...rest }) {
     function selectIcon() {
         switch (selected) {
             case "Despesa":
@@ -32,14 +32,16 @@ export function DropDown({ children, selected, ...rest }) {
     }
 
     return (
-        <Container {...rest}>
+        <Container {...rest} $variant={variant}>
             <div>
                 <Selected>
                     <div>
                         {selectIcon()}
                         <p>{selected}</p>
                     </div>
-                    <MdOutlineKeyboardArrowDown />
+                    {
+                        variant ? null : <MdOutlineKeyboardArrowDown />
+                    }
                 </Selected>
                 {children}
             </div>
