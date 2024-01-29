@@ -6,14 +6,39 @@ import { Profile } from "../../components/Profile";
 import { Input } from "../../components/Input";
 import { FaFilter, FaSearch } from "react-icons/fa";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 
 export function Transactions() {
-    const [buttonSelected, setButtonSelected] = useState("");
+    const [buttonSelected, setButtonSelected] = useState("all");
+    const [search, setSearch] = useState("");
+    const [transactions, setTransactions] = useState([]);
 
     function handleSelectedButton(button) {
         setButtonSelected(button);
     }
+
+    useEffect(() => {
+        async function fetchTransactions() {
+            try {
+                let response;
+
+                if(buttonSelected == "all"){
+                    response = await api.get(`/transactions?title=${search}`);
+                } else {
+                    response = await api.get(`/transactions/${buttonSelected}?title=${search}`);
+                }
+    
+                setTransactions(response.data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchTransactions();
+    }, [search, buttonSelected])
+
+    useEffect(() => console.log(transactions), [search])
 
     return (
         <Container>
@@ -22,10 +47,11 @@ export function Transactions() {
                     <h2>Transações</h2>
                     <Profile />
                 </div>
-                <Input 
-                    icon={FaSearch} 
-                    placeholder={"Pesquisar"} 
+                <Input
+                    icon={FaSearch}
+                    placeholder={"Pesquisar"}
                     className={"search"}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
                 <Filter>
                     <FaFilter />
@@ -46,36 +72,18 @@ export function Transactions() {
                     />
                 </Filter>
                 <section>
-                    <Transaction
-                        type={"expenses"}
-                        title={"Água"}
-                        value={20.56}
-                        date={"2024-01-24"}
-                    />
-                    <Transaction
-                        type={"incomes"}
-                        title={"Água"}
-                        value={20.56}
-                        date={"2024-01-24"}
-                    />
-                    <Transaction
-                        type={"expenses"}
-                        title={"Água"}
-                        value={20.56}
-                        date={"2024-01-24"}
-                    />
-                    <Transaction
-                        type={"incomes"}
-                        title={"Água"}
-                        value={20.56}
-                        date={"2024-01-24"}
-                    />
-                    <Transaction
-                        type={"expenses"}
-                        title={"Água"}
-                        value={20.56}
-                        date={"2024-01-24"}
-                    />
+                    {
+                        transactions &&
+                        transactions.map((transaction) => (
+                            <Transaction
+                                key={transaction.id}
+                                type={transaction.type}
+                                title={transaction.title}
+                                value={transaction.value.toFixed(2)}
+                                date={transaction.date}
+                            />
+                        ))
+                    }
                 </section>
             </Content>
             <Menu />
