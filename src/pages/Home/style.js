@@ -48,6 +48,11 @@ export const Content = styled.div`
             align-items: center;
             justify-content: space-around;
             width: 100%;
+
+            @media (max-width: ${DEVICE_BREAKPOINT.XS}) {
+                flex-direction: column;
+                gap: 0.7rem;
+            }
         }
     }
 

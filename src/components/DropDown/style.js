@@ -6,7 +6,7 @@ export const Container = styled.div`
     height: 2.75rem;
     background: ${({theme}) => theme.COLORS.GRAY_400};
     color: ${({theme}) => theme.COLORS.BLUE_100};
-    border: ${({theme, $variant}) => $variant ? "none" : "1px solid " + theme.COLORS.BLUE_100};
+    border: 1px solid ${({theme}) => theme.COLORS.BLUE_100};
     border-radius: 1rem;
     
     > div {
@@ -16,7 +16,7 @@ export const Container = styled.div`
         overflow: hidden;
 
         &:hover {
-            overflow: ${({$variant}) => $variant ? "hidden" : "initial"};
+            overflow: ${({$editable}) => $editable ? "hidden" : "initial"};
         }
     }
 `;

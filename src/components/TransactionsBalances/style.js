@@ -6,7 +6,7 @@ export const Container = styled.div`
     gap: 0.5rem;
 
     > svg {
-        font-size: 2.8rem;
+        font-size: 2rem;
     }
 
     > div {
@@ -15,7 +15,7 @@ export const Container = styled.div`
         }
 
         p {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: ${({theme, $type}) => $type === "expenses" ? theme.COLORS.RED_100 : theme.COLORS.GREEN_100};
         }

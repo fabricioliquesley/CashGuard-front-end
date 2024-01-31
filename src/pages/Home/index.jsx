@@ -33,8 +33,8 @@ export function Home() {
 
     const navigate = useNavigate();
 
-    function showTransactionDetails(transaction_id){
-        navigate(`/details/${transaction_id}`);
+    function showTransactionDetails(type, transaction_id) {
+        navigate(`/details?type=${type}&id=${transaction_id}`);
     }
 
     getExpensesValue("incomes");
@@ -90,7 +90,7 @@ export function Home() {
                                 title={transaction.title}
                                 value={transaction.value.toFixed(2)}
                                 date={transaction.date}
-                                onClick={() => showTransactionDetails(transaction.id)}
+                                onClick={() => showTransactionDetails(transaction.type, transaction.id)}
                             />
                         ))
                     }

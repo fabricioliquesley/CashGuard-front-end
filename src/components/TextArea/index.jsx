@@ -1,8 +1,8 @@
 import { Container } from "./style";
 
-export function TextArea({ variant, ...rest }) {
+export function TextArea({ editable, ...rest }) {
     return (
-        <Container {...rest} $variant={variant} readOnly={variant}>
+        <Container {...rest} readOnly={editable}>
 
         </Container>
     )

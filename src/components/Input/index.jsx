@@ -1,10 +1,10 @@
 import { Container } from "./style";
 
-export function Input({ icon: Icon, variant = false, ...rest }) {
+export function Input({ icon: Icon, editable, ...rest }) {
     return (
-        <Container $variant={variant}>
+        <Container>
             {Icon && <Icon />}
-            <input type="text" {...rest} autoComplete="none" readOnly={variant}/>
+            <input type="text" {...rest} autoComplete="none" readOnly={editable}/>
         </Container>
     )
 }

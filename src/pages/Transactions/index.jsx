@@ -7,6 +7,7 @@ import { Input } from "../../components/Input";
 import { FaFilter, FaSearch } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
 export function Transactions() {
@@ -16,6 +17,12 @@ export function Transactions() {
 
     function handleSelectedButton(button) {
         setButtonSelected(button);
+    }
+
+    const navigate = useNavigate();
+
+    function showTransactionDetails(transaction_id){
+        navigate(`/details/${transaction_id}`);
     }
 
     useEffect(() => {
@@ -79,6 +86,7 @@ export function Transactions() {
                                 title={transaction.title}
                                 value={transaction.value.toFixed(2)}
                                 date={transaction.date}
+                                onClick={() => showTransactionDetails(transaction.id)}
                             />
                         ))
                     }
