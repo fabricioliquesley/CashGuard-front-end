@@ -13,7 +13,7 @@ import { TbCurrencyReal } from "react-icons/tb";
 import { IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
 export function Details() {
@@ -46,8 +46,25 @@ export function Details() {
         setSelectedStatus(selected);
     }
 
-    function deleteTransaction() {
-        return alert("Transaction deleted");
+    const navigate = useNavigate();
+
+    async function deleteTransaction() {
+        const confirm = window.confirm("Tem certeza que quer deletar essa transação?");
+
+        if (confirm) {
+            await api.delete(`/transactions/${type}/${id}`)
+                .then(() => {
+                    alert("Transação deletada!");
+                    navigate(-1);
+                })
+                .catch((erro) => {
+                    if (erro.response){
+                        console.error(erro.response.data.message);
+                    } else {
+                        alert("Não foi possível excluir a nota!");
+                    }
+                })
+        }
     }
 
     function changeEditorMode() {
