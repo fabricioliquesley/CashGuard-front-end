@@ -21,8 +21,8 @@ export function Transactions() {
 
     const navigate = useNavigate();
 
-    function showTransactionDetails(transaction_id){
-        navigate(`/details/${transaction_id}`);
+    function showTransactionDetails(type, transaction_id) {
+        navigate(`/details?type=${type}&id=${transaction_id}`);
     }
 
     useEffect(() => {
@@ -30,12 +30,12 @@ export function Transactions() {
             try {
                 let response;
 
-                if(buttonSelected == "all"){
+                if (buttonSelected == "all") {
                     response = await api.get(`/transactions?title=${search}`);
                 } else {
                     response = await api.get(`/transactions/${buttonSelected}?title=${search}`);
                 }
-    
+
                 setTransactions(response.data)
             } catch (error) {
                 console.error(error);
@@ -86,7 +86,7 @@ export function Transactions() {
                                 title={transaction.title}
                                 value={transaction.value.toFixed(2)}
                                 date={transaction.date}
-                                onClick={() => showTransactionDetails(transaction.id)}
+                                onClick={() => showTransactionDetails(transaction.type, transaction.id)}
                             />
                         ))
                     }
