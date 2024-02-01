@@ -11,6 +11,7 @@ import { MdOutlineTitle } from "react-icons/md";
 import { TbCurrencyReal } from "react-icons/tb";
 
 import { IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
+import { GiReceiveMoney, GiPresent, GiPartyPopper } from "react-icons/gi";
 
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -207,12 +208,33 @@ export function Details() {
                             Alimentação
                         </Option>
                         <Option
+                                data-value={"Diversao"}
+                                onClick={(e) => selectedValueCategory(e.target.dataset.value)}
+                            >
+                                <GiPartyPopper />
+                                Diversão
+                            </Option>
+                        <Option
                             data-value={"Investimentos"}
                             onClick={(e) => selectedValueCategory(e.target.dataset.value)}
                         >
                             <IoBarChartOutline />
                             Investimentos
                         </Option>
+                        <Option
+                                data-value={"Salario"}
+                                onClick={(e) => selectedValueCategory(e.target.dataset.value)}
+                            >
+                                <GiReceiveMoney />
+                                Salário
+                            </Option>
+                            <Option
+                                data-value={"Presente"}
+                                onClick={(e) => selectedValueCategory(e.target.dataset.value)}
+                            >
+                                <GiPresent />
+                                Presente
+                            </Option>
                         <Option
                             data-value={"Outros"}
                             onClick={(e) => selectedValueCategory(e.target.dataset.value)}
