@@ -39,6 +39,10 @@ export function Create() {
     const navigate = useNavigate();
 
     async function createTransaction() {
+        if (!title || !description || !value || !date) {
+            return alert("Preencha todos os campos para criar uma nova transação!");
+        }
+
         await api.post("/transactions", {
             type: selectedType == "Despesa" ? "expenses" : "incomes",
             title,
@@ -48,10 +52,17 @@ export function Create() {
             category: selectedCategory,
             status: selectedStatus
         })
-
-        alert("Transação criada com sucesso!")
-
-        navigate(-1);
+            .then(() => {
+                alert("Transação criada com sucesso!");
+                navigate(-1);
+            })
+            .catch((erro) => {
+                if (erro.response) {
+                    console.error(erro.response.data.message);
+                } else {
+                    alert("Não foi possível criar a transação");
+                }
+            })
     }
 
     return (
@@ -164,8 +175,8 @@ export function Create() {
                     />
                     <label htmlFor="status">Status</label>
                     <DropDown selected={selectedStatus} id={"status"}>
-                            {
-                                selectedType == "Despesa" ?
+                        {
+                            selectedType == "Despesa" ?
                                 <List>
                                     <Option
                                         data-value={"Não pago"}
@@ -199,7 +210,7 @@ export function Create() {
                                         Recebido
                                     </Option>
                                 </List>
-                            }
+                        }
                     </DropDown>
                 </Form>
                 <Button title={"Criar"} onClick={createTransaction} />
