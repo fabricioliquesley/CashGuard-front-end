@@ -2,6 +2,7 @@ import { Container, Selected } from "./style";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { IoTrendingUpOutline, IoTrendingDownOutline, IoHome, IoWineSharp, IoAirplaneSharp, IoStorefrontOutline, IoFastFoodOutline, IoBarChartOutline, IoEllipsisHorizontalSharp, IoCheckmarkSharp, IoCloseOutline } from "react-icons/io5";
+import { GiReceiveMoney, GiPresent, GiPartyPopper } from "react-icons/gi";
 
 export function DropDown({ children, selected, editable, ...rest }) {
     function selectIcon() {
@@ -20,8 +21,14 @@ export function DropDown({ children, selected, editable, ...rest }) {
                 return <IoStorefrontOutline />
             case "Alimentação":
                 return <IoFastFoodOutline />
+            case "Diversao":
+                return <GiPartyPopper />
             case "Investimentos":
                 return <IoBarChartOutline />
+            case "Salario":
+                return <GiReceiveMoney />
+            case "Presente":
+                return <GiPresent />
             case "Não pago":
             case "Não recebido":
                 return <IoCloseOutline />

@@ -33,9 +33,15 @@ export function UpdateProfile() {
             password
         }
 
-        await updateProfile({user: user});
+        await updateProfile({user: user})
+            .then((response) => {
+                if(response.status === 201) alert("Perfil atualizado!");
+            }).catch((erro) => {
+                if(erro.response){
+                    alert(erro.response.data.message);
+                }
+            })
 
-        alert("Perfil atualizado!");
     }
 
     return (
@@ -67,12 +73,14 @@ export function UpdateProfile() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <Input
+                        type="password"
                         icon={FiKey}
                         placeholder={"Senha antiga"}
                         value={old_password}
                         onChange={(e) => setOld_password(e.target.value)}
                     />
                     <Input
+                        type="password"
                         icon={FiKey}
                         placeholder={"Nova senha"}
                         value={password}
