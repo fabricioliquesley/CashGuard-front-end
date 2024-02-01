@@ -35,18 +35,8 @@ function AuthProvider({ children }) {
         setData({});
     }
 
-    async function updateProfile({ user, avatarFile }) {
+    async function updateProfile({ user }) {
         try {
-            if (avatarFile) {
-                const fileUploadForm = new FormData();
-
-                fileUploadForm.append("avatar", avatarFile);
-
-                const response = api.patch("users/avatar", fileUploadForm);
-
-                user.avatar = response.data.avatar;
-            }
-
             await api.put("/users", user);
 
             localStorage.setItem("@cashGuard:user", JSON.stringify(user));

@@ -12,41 +12,16 @@ export const Container = styled.main`
         position: relative;
         display: grid;
         place-content: center;
-        width: 8.33333333rem;
-        height: 8.33333333rem;
-        border: 2px solid ${({ theme }) => theme.COLORS.BLUE_100};
-        border-radius: 50%;
         margin: 2rem auto;
 
-        svg {
-            font-size: 4.166666rem;
+        h1 {
+            font-size: 3.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
             color: ${({ theme }) => theme.COLORS.BLUE_100};
-        }
-
-        input {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 2rem;
-            height: 2rem;
-            opacity: 0;
-        }
-        
-        &::before {
-            position: absolute;
-            display: grid;
-            place-content: center;
-            bottom: 0;
-            right: 0;
-            content: '🖊';
-            width: 2rem;
-            height: 2rem;
-            background: ${({ theme }) => theme.COLORS.GRAY_400};
-            font-size: 1rem;
-            color: ${({ theme }) => theme.COLORS.BLUE_100};
-            border: 1px solid ${({ theme }) => theme.COLORS.BLUE_100};
-            border-radius: 50%;
-            cursor: pointer;
+            text-shadow: ${({ theme }) => "0px 0px 30px " + theme.COLORS.BLUE_100};
+            
+            transition: .4s;
         }
     }
 `;

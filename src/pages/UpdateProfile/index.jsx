@@ -43,15 +43,14 @@ export function UpdateProfile() {
             <Header>
                 <Link to={-1}>
                     <FiArrowLeft />
-                    <h3>Perfil</h3>
+                    <h3>Voltar</h3>
                 </Link>
                 <button onClick={logOut}>
                     <RxExit />
                 </button>
             </Header>
             <div>
-                <FiUser />
-                <input type="file" />
+                <h1>Perfil</h1>
             </div>
             <Content>
                 <fieldset>
